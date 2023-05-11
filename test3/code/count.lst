@@ -1,0 +1,24 @@
+     1                                 %line 1+1 C:\2022_leitaoming\count.asm
+     2                                 [org 0100
+     3                                 
+     4 00000000 B000                   MOV AL, 0
+     5 00000002 BAF305                 MOV DX, 05F3
+     6 00000005 EE                     OUT DX, AL
+     7                                 
+     8 00000006 BAF005                 MOV DX, 05F0
+     9 00000009 B80200                 MOV AX, 2
+    10 0000000C EE                     OUT DX, AL
+    11                                 
+    12 0000000D BAF005                 LOOPA:MOV DX, 05F0
+    13 00000010 EC                     IN AL, DX
+    14 00000011 88C3                   MOV BL, AL
+    15 00000013 EC                     IN AL, DX
+    16 00000014 3C02                   CMP AL, 2
+    17                                 
+    18 00000016 7505                   JNE NEXT
+    19                                 
+    20 00000018 BAF005                 MOV DX, 05F0
+    21 0000001B B80200                 MOV AX, 2
+    22 0000001E EE                     OUT DX, AL
+    23                                 
+    24 0000001F EBEA                   NEXT:JMP LOOPA

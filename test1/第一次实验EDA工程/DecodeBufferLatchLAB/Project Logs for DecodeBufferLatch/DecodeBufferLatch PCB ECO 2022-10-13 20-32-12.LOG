@@ -1,0 +1,11 @@
+Added Pin To Net: NetName=CS373 Pin=U1-10
+Added Pin To Net: NetName=CS244 Pin=U1-12
+Added Pin To Net: NetName=L0 Pin=U2-2
+Added Pin To Net: NetName=L1 Pin=U2-5
+Added Pin To Net: NetName=L2 Pin=U2-6
+Added Pin To Net: NetName=L3 Pin=U2-9
+Added Pin To Net: NetName=L4 Pin=U2-12
+Added Pin To Net: NetName=L5 Pin=U2-15
+Added Pin To Net: NetName=L6 Pin=U2-16
+Added Pin To Net: NetName=L7 Pin=U2-19
+Added Room: Name=DecodeBufferLatch

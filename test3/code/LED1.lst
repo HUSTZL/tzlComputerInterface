@@ -1,0 +1,25 @@
+     1                                 %line 1+1 C:\2022_leitaoming\LED1.asm
+     2                                 IOY0 EQU 08A0
+     3                                 IOY1 EQU 08A8
+     4                                 IOY2 EQU 08B0
+     5                                 IOY3 EQU 08B8
+     6                                 IOY4 EQU 08C0
+     7                                 IOY5 EQU 08C8
+     8                                 LED_PORT EQU IOY3
+     9                                 [org 0100
+    10                                 
+    11 00000000 BAB808                 MOV DX, LED_PORT
+    12                                 LED_LOOP:
+    13 00000003 B0AA                   MOV AL, 0AA
+    14 00000005 EE                     OUT DX, AL
+    15 00000006 E80500                 CALL DELAY
+    16 00000009 B055                   MOV AL, 55
+    17 0000000B EE                     OUT DX, AL
+    18 0000000C E8FFFF                 CALL DELAY
+    19 0000000F EBF0                   JMP LED_LOOP
+    20                                 DELAY:
+    21 00000011 B9FFFF                 MOV CX, 0FFFF
+    22                                 BACK:
+    23 00000014 49                     DEC CX
+    24 00000015 75FB                   JNZ BACK
+    25 00000017 C3                     RET

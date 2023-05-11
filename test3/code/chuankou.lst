@@ -1,0 +1,75 @@
+     1                                 %line 1+1 C:\2022_leitaoming\chuankou.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 
+     6                                 
+     7                                 
+     8                                 IOY0 EQU 08A0
+     9                                 IOY1 EQU 08A8
+    10                                 IOY2 EQU 08B0
+    11                                 IOY3 EQU 08B8
+    12                                 IOY4 EQU 08C0
+    13                                 IOY5 EQU 08C8
+    14                                 IO8251A equ 3F0
+    15                                 IO8251B equ 3F1
+    16                                 KEY_PORT EQU IOY1
+    17                                 LED_PORT EQU IOY2
+    18                                 start:
+    19 00000000 BAF103                 MOV DX,IO8251B
+    20 00000003 30C0                   xor AL,AL
+    21                                 
+    22 00000005 EE                     OUT DX,AL
+    23 00000006 E83900                 CALL DELAY_0F
+    24 00000009 EE                     OUT DX,AL
+    25 0000000A E83500                 CALL DELAY_0F
+    26 0000000D EE                     OUT DX,AL
+    27 0000000E E83100                 CALL DELAY_0F
+    28                                 
+    29 00000011 B040                   MOV AL,040
+    30 00000013 EE                     OUT DX,AL
+    31 00000014 E82B00                 CALL DELAY_0F
+    32                                 
+    33                                 
+    34 00000017 B04E                   MOV AL,04e
+    35                                 
+    36 00000019 EE                     OUT DX,AL
+    37 0000001A E82500                 CALL DELAY_0F
+    38 0000001D B037                   MOV AL, 037
+    39 0000001F EE                     OUT DX,AL
+    40 00000020 E81F00                 CALL DELAY_0F
+    41                                 
+    42                                 waitToReceive:
+    43 00000023 BAF103                 MOV DX,IO8251B
+    44 00000026 EC                     IN AL,DX
+    45 00000027 A802                   TEST AL,02
+    46 00000029 74F6                   JZ waitToReceive
+    47 0000002B BAF003                 MOV DX,IO8251A
+    48 0000002E EC                     IN AL,DX
+    49 0000002F BAB008                 MOV DX,LED_PORT
+    50 00000032 EE                     OUT DX,AL
+    51                                 
+    52                                 waitToSend:
+    53 00000033 BAF103                 MOV DX,IO8251B
+    54 00000036 EC                     IN AL,DX
+    55 00000037 A801                   TEST AL,01
+    56 00000039 74F6                   JZ waitToSend
+    57 0000003B BAA808                 MOV DX, KEY_PORT
+    58 0000003E EC                     IN AL, DX
+    59 0000003F BAF003                 MOV DX,IO8251A
+    60 00000042 EE                     OUT DX,AL
+    61                                 
+    62                                 
+    63 00000043 EBDC                   JMP waitToReceive
+    64                                 DELAY_0F:
+    65 00000045 51                     PUSH CX
+    66 00000046 B90F00                 MOV CX,0F
+    67 00000049 E2FC                   here1: LOOP here1
+    68 0000004B 59                     POP CX
+    69 0000004C C3                     RET
+    70                                 DELAY_FFF:
+    71 0000004D 51                     PUSH CX
+    72 0000004E B9FF0F                 MOV CX,0FFF
+    73 00000051 E2FC                   here2: LOOP here2
+    74 00000053 59                     POP CX
+    75 00000054 C3                     RET

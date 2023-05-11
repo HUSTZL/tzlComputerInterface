@@ -1,0 +1,8 @@
+     1                                 %line 1+1 C:\2022_leitaoming\test.asm
+     2                                 [org 0100
+     3                                 
+     4 00000000 BAA008                 LOOPA:MOV DX, 08A0
+     5 00000003 EC                     IN AL, DX
+     6 00000004 BAA808                 MOV DX, 08A8
+     7 00000007 EE                     OUT DX, AL
+     8 00000008 EBF4                   JMP LOOPA

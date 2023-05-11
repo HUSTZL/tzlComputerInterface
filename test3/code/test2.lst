@@ -1,0 +1,39 @@
+     1                                 %line 1+1 C:\2022_leitaoming\test2.asm
+     2                                 
+     3                                 
+     4                                 
+     5                                 
+     6                                 IOY0 EQU 08A0
+     7                                 IOY1 EQU 08A8
+     8                                 IOY2 EQU 08B0
+     9                                 IOY3 EQU 08B8
+    10                                 IOY4 EQU 08C0
+    11                                 IOY5 EQU 08C8
+    12                                 IO8253 EQU 05F0
+    13                                 IO8253_0 EQU IO8253
+    14                                 IO8253_1 EQU IO8253+1
+    15                                 IO8253_2 EQU IO8253+2
+    16                                 IO8253_C EQU IO8253+3
+    17                                 
+    18                                 COUNT EQU 20
+    19                                 A8255_PA EQU IOY5
+    20                                 A8255_PB EQU IOY5+1
+    21                                 A8255_PC EQU IOY5+2
+    22                                 A8255_CTL EQU IOY5+3
+    23                                 Test8253:
+    24                                 
+    25                                 
+    26 00000000 B016                   MOV AL, 16
+    27 00000002 BAF305                 MOV DX, IO8253_C
+    28 00000005 EE                     OUT DX, AL
+    29 00000006 BAF005                 MOV DX, IO8253_0
+    30 00000009 B81400                 MOV AX, COUNT
+    31 0000000C EE                     OUT DX, AL
+    32 0000000D BA1A00                 MOV DX, MESS
+    33 00000010 B80009                 MOV AX, 0900
+    34 00000013 CD21                   INT 021
+    35 00000015 B8004C                 MOV AX, 04C00
+    36 00000018 CD21                   INT 021
+    37 0000001A 0A0D3832353320574F-    MESS DB 0A
+    38 0000001A 524B494E47202E2E2E-
+    39 0000001A 00                 
